@@ -1,0 +1,17 @@
+{
+  "name": "upgrade-facil",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Loja fictícia de kits para notebooks com o assistente Bit",
+  "scripts": {
+    "start": "node server/index.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0"
+  }
+}

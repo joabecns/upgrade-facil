@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Upgrade Fácil | Kits de upgrade para notebooks</title>
   <meta name="description" content="Kits de SSD e memória RAM para deixar seu notebook mais rápido. Conheça o Bit, nosso assistente." />
+  <meta name="theme-color" content="#202020" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#inicio">Pular para o conteúdo</a>
+  <div class="topbar"><div class="container"><span>Mais desempenho. Novas possibilidades.</span><span>Loja fictícia · Projeto acadêmico</span></div></div>
 
   <!-- ===== CABEÇALHO ===== -->
   <header class="header" id="topo">
@@ -23,18 +26,28 @@
         <span>Upgrade<strong>Fácil</strong></span>
       </a>
 
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+      <form class="search" id="kitSearchForm" role="search">
+        <label class="sr-only" for="kitSearch">Buscar kits</label>
+        <input type="search" id="kitSearch" placeholder="Encontre o upgrade para seu notebook" autocomplete="off" />
+        <button type="submit" aria-label="Buscar kits"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></button>
+      </form>
+      <button class="header__help" data-open-chat><span class="header__help-icon" aria-hidden="true">B</span><span>Precisa de uma mão?<strong>Converse com o Bit</strong></span></button>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="nav" id="nav">
+    </div>
+    <div class="header__nav"><div class="container nav-wrap">
+      <a class="department" href="#kits"><span aria-hidden="true">☰</span> KITS PARA NOTEBOOK</a>
+      <nav class="nav" id="nav" aria-label="Navegação principal">
         <a href="#inicio" class="nav__link">Início</a>
         <a href="#sobre" class="nav__link">Sobre</a>
         <a href="#kits" class="nav__link">Kits</a>
         <a href="#compatibilidade" class="nav__link">Compatibilidade</a>
         <a href="#orcamento" class="nav__link nav__link--cta">Orçamento</a>
       </nav>
-    </div>
+    </div></div>
   </header>
 
   <main>
@@ -42,22 +55,39 @@
     <section class="hero" id="inicio">
       <div class="container hero__grid">
         <div class="hero__text">
-          <span class="tag">// upgrade para notebooks</span>
+          <span class="tag">UM UPGRADE FAZ A DIFERENÇA</span>
           <h1>Seu notebook <span class="highlight">mais rápido</span> sem trocar de máquina.</h1>
-          <p>Kits de SSD e memória RAM selecionados para quem quer ligar o computador em segundos, abrir mais programas ao mesmo tempo e ganhar espaço de sobra.</p>
+          <p>Mais agilidade, mais espaço e menos travamentos. Encontre o kit de SSD e memória RAM ideal para dar vida nova ao seu notebook.</p>
           <div class="hero__actions">
-            <a href="#kits" class="btn btn--primary">Ver kits</a>
+            <a href="#kits" class="btn btn--primary">Explorar os kits <span aria-hidden="true">↗</span></a>
             <button class="btn btn--ghost" data-open-chat>Falar com o Bit</button>
           </div>
           <ul class="hero__stats">
-            <li><strong>5x</strong><span>inicialização mais rápida</span></li>
+            <li><strong>SSD + RAM</strong><span>um novo ritmo para seu dia</span></li>
             <li><strong>3</strong><span>kits prontos</span></li>
             <li><strong>12m</strong><span>de garantia</span></li>
           </ul>
         </div>
         <div class="hero__media">
           <img src="img/hero.jpg" alt="Notebook aberto com SSD e memória RAM sendo instalados" width="1536" height="1024" />
+          <span class="hero__caption">Seu próximo upgrade começa aqui.</span>
         </div>
+      </div>
+    </section>
+
+    <!-- ===== KITS (CARDS) ===== -->
+    <section class="section section--alt" id="kits">
+      <div class="container">
+        <header class="section__head">
+          <span class="tag">SEU NOTEBOOK MERECE MAIS</span>
+          <h2>Encontre seu próximo upgrade<span class="title-dot">.</span></h2>
+          <p>Três opções para cada necessidade. Todos com chave, guia e garantia de 12 meses.</p>
+        </header>
+        <div class="cards" id="cards">
+          <!-- Cards gerados por js/script.js a partir de js/kits.js -->
+        </div>
+        <p class="catalog-feedback" id="catalogFeedback" role="status" hidden>Nenhum kit encontrado. Tente buscar por SSD, RAM ou combo.</p>
+        <p class="catalog-note">Imagens ilustrativas. Confira as especificações e a compatibilidade antes de solicitar seu orçamento.</p>
       </div>
     </section>
 
@@ -65,7 +95,7 @@
     <section class="section" id="sobre">
       <div class="container">
         <header class="section__head">
-          <span class="tag">// sobre a loja</span>
+          <span class="tag">FEITO PARA FACILITAR</span>
           <h2>Por que a Upgrade Fácil?</h2>
           <p>Somos uma loja virtual (fictícia) especializada em dar vida nova a notebooks. Nosso público são estudantes, profissionais e qualquer pessoa cujo notebook ficou lento ou sem espaço.</p>
         </header>
@@ -94,33 +124,20 @@
       </div>
     </section>
 
-    <!-- ===== KITS (CARDS) ===== -->
-    <section class="section section--alt" id="kits">
-      <div class="container">
-        <header class="section__head">
-          <span class="tag">// catálogo</span>
-          <h2>Escolha seu kit</h2>
-          <p>Três opções para cada necessidade. Todos com chave, guia e garantia de 12 meses.</p>
-        </header>
-        <div class="cards" id="cards">
-          <!-- Cards gerados por js/script.js a partir de js/kits.js -->
-        </div>
-      </div>
-    </section>
-
     <!-- ===== COMPATIBILIDADE ===== -->
     <section class="section" id="compatibilidade">
       <div class="container compat">
         <header class="section__head section__head--left">
-          <span class="tag">// antes de comprar</span>
+          <span class="tag">ANTES DE ESCOLHER</span>
           <h2>Seu notebook é compatível?</h2>
           <p>Siga estes passos rápidos. Em caso de dúvida, pergunte ao Bit.</p>
+          <button class="btn btn--outline" data-open-chat>Verificar com o Bit <span aria-hidden="true">↗</span></button>
         </header>
         <ol class="steps">
           <li><strong>Descubra o modelo exato</strong> — etiqueta embaixo do notebook ou em Configurações → Sistema → Sobre.</li>
-          <li><strong>Veja o tipo de memória</strong> — no Windows, Gerenciador de Tarefas → Desempenho → Memória mostra DDR4 ou DDR5.</li>
+          <li><strong>Veja o tipo de memória</strong> — confirme no manual a geração (DDR4 ou DDR5), a capacidade máxima e os slots disponíveis.</li>
           <li><strong>Confira o slot de SSD</strong> — procure no manual por “M.2 NVMe” ou “SATA 2,5”.</li>
-          <li><strong>Verifique se a RAM é soldada</strong> — alguns modelos finos não permitem troca de memória.</li>
+          <li><strong>Verifique se a RAM é soldada</strong> — ela não pode ser substituída. Confira no manual se há slots adicionais para expansão.</li>
         </ol>
       </div>
     </section>
@@ -129,9 +146,10 @@
     <section class="section section--alt" id="orcamento">
       <div class="container form-wrap">
         <header class="section__head section__head--left">
-          <span class="tag">// orçamento</span>
+          <span class="tag">VAMOS DAR O PRÓXIMO PASSO?</span>
           <h2>Solicite seu orçamento</h2>
-          <p>Conte sobre seu notebook e retornamos com o kit ideal e o valor final.</p>
+          <p>Conte sobre seu notebook e escolha o kit de interesse.</p>
+          <p class="demo-note">Este formulário é uma demonstração acadêmica. Nenhum dado é enviado ou salvo.</p>
         </header>
 
         <form class="form" id="quoteForm" novalidate>
@@ -186,25 +204,25 @@
     <p class="footer__copy">© <span id="ano"></span> Upgrade Fácil. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- ===== CHAT DO BIT (versão baseada em regras) =====
-       ESPAÇO PARA MELHORIA: o outro integrante substituirá a lógica de
-       js/chatbot.js por um fetch ao backend (/api/chat) que chama a IA. -->
-  <button class="chat-fab" id="chatFab" aria-label="Abrir chat com o Bit">
+  <!-- ===== BIT: widget integrado ao backend POST /api/chat ===== -->
+  <button class="chat-fab" id="chatFab" aria-label="Abrir chat com o Bit" aria-controls="chat" aria-expanded="false">
     <span class="chat-fab__face">B</span>
+    <span class="chat-fab__label">Precisa de ajuda?</span>
   </button>
   <section class="chat" id="chat" aria-label="Chat com o Bit" hidden>
     <header class="chat__head">
       <div class="chat__avatar">B</div>
       <div>
         <strong>Bit</strong>
-        <small>Assistente de upgrades</small>
+        <small><span class="status-dot" aria-hidden="true"></span> Assistente de IA · Upgrade Fácil</small>
       </div>
       <button class="chat__close" id="chatClose" aria-label="Fechar chat">×</button>
     </header>
-    <div class="chat__messages" id="chatMessages"></div>
+    <div class="chat__messages" id="chatMessages" role="log" aria-label="Mensagens do chat" aria-live="polite"></div>
     <div class="chat__chips" id="chatChips"></div>
     <form class="chat__form" id="chatForm">
-      <input type="text" id="chatInput" placeholder="Pergunte ao Bit…" maxlength="300" autocomplete="off" />
+      <label class="sr-only" for="chatInput">Sua mensagem para o Bit</label>
+      <input type="text" id="chatInput" placeholder="Pergunte ao Bit…" maxlength="300" autocomplete="off" required />
       <button type="submit" aria-label="Enviar">➤</button>
     </form>
   </section>
