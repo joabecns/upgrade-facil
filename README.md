@@ -2,7 +2,7 @@
 
 Loja virtual **fictícia** de kits de upgrade para notebooks (SSD, memória RAM e SSD + RAM), com o **Bit**, assistente que tira dúvidas, recomenda kits por necessidade/orçamento e orienta a verificação de compatibilidade.
 
-Projeto da AV3 — Desenvolvimento Web para IA (FESPI / PIT).
+Projeto da AV3 — Desenvolvimento Web para IA (Faculdade PIT)
 
 ## Integrantes
 - Joabe Carvalho Neco e Silva 
