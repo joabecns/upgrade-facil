@@ -1,4 +1,4 @@
-const { KITS, formatarPreco } = require("../js/kits");
+const { KITS, formatarPreco } = require("../public/js/kits");
 
 // O catálogo é o mesmo que gera os cards no navegador.
 const catalogo = KITS.map((kit) => [

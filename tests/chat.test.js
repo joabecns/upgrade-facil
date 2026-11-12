@@ -1,7 +1,7 @@
 const { test, before, after, afterEach } = require("node:test");
 const assert = require("node:assert/strict");
-const app = require("../server");
-const { KITS } = require("../js/kits");
+const app = require("../app");
+const { KITS } = require("../public/js/kits");
 
 // As chamadas locais usam fetch original; somente a saída para Gemini é simulada.
 const fetchOriginal = global.fetch;
@@ -28,10 +28,10 @@ function enviar(body) {
 }
 
 test("publica o frontend e bloqueia arquivos privados e caminhos fora das pastas públicas", async () => {
-  for (const rota of ["/", "/index.html", "/css/style.css", "/js/kits.js", "/img/hero.jpg"]) {
+  for (const rota of ["/", "/index.html", "/css/style.css", "/js/kits.js", "/js/chatbot.js", "/js/script.js", "/img/hero.jpg", ...KITS.map((kit) => `/${kit.imagem}`)]) {
     assert.equal((await fetchOriginal(base + rota)).status, 200, rota);
   }
-  for (const rota of ["/.env", "/.env.example", "/.git/config", "/server/index.js", "/server/bitPrompt.js", "/package.json", "/img.zip", "/js/%2e%2e%2f.env"]) {
+  for (const rota of ["/.env", "/.env.example", "/.git/config", "/app.js", "/server/index.js", "/server/bitPrompt.js", "/tests/chat.test.js", "/package.json", "/img.zip", "/js/%2e%2e%2f.env"]) {
     const resposta = await fetchOriginal(base + rota);
     assert.equal(resposta.status, 404, rota);
   }

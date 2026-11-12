@@ -31,7 +31,7 @@ Use esse endereço para testar o chat, em vez de abrir o HTML diretamente ou usa
 - O widget no final do `body` (`#chat`) envia `POST /api/chat` com `{ mensagem, historico }` e recebe `{ resposta }`; falhas retornam `{ erro }`.
 - O servidor Express chama a API Gemini com `fetch`, chave do `.env` e instrução de sistema definida em `server/bitPrompt.js`.
 - O Bit tem persona amigável, ajuda com SSD/RAM, recomenda por necessidade e orçamento e orienta a verificação de compatibilidade, sem confirmar modelos por suposição.
-- O prompt lê os mesmos dados de `js/kits.js` utilizados nos cards. O navegador mantém somente as últimas seis mensagens no histórico, em memória; recarregar a página limpa a conversa.
+- O prompt lê os mesmos dados de `public/js/kits.js` utilizados nos cards. O navegador mantém somente as últimas seis mensagens no histórico, em memória; recarregar a página limpa a conversa.
 - Marcações como `[KIT:ssd]` geram um botão de orçamento com o kit selecionado. As respostas são exibidas como texto, sem executar HTML.
 - Há validação das mensagens, bloqueio de envios simultâneos e tratamento de falhas, tempo limite e cota da API. Falhas temporárias (HTTP 500, 502, 503 ou 504) recebem uma única tentativa adicional após um segundo, mantendo o limite total de 30 segundos. O formulário de orçamento continua sendo uma demonstração, sem envio ou armazenamento.
 
@@ -46,6 +46,15 @@ Execute `npm test` para verificar a rota e os erros com a API simulada (não gas
 
 Confira a continuidade da conversa, o botão de orçamento, a busca de kits, o menu mobile e a validação do formulário. A API depende da disponibilidade e cota da chave no Google AI Studio.
 
+### Publicar na Vercel
+
+1. Envie as alterações para o GitHub e importe o repositório na [Vercel](https://vercel.com/new).
+2. Use o preset **Express**, com a raiz do projeto como Root Directory e as configurações automáticas de build e saída. Não use `npm start` como comando de build.
+3. Cadastre `GEMINI_API_KEY` e `GEMINI_MODEL` (o mesmo modelo do seu `.env`) em Environment Variables, para Production e Preview. Não é necessário configurar `PORT`.
+4. Clique em Deploy e teste o site e o chat pelo endereço publicado. Se alterar as variáveis depois, faça Redeploy.
+
+O arquivo `app.js` exporta o Express para a Vercel; o frontend em `public/` é servido pelo CDN. Localmente, `npm start` continua funcionando. A pasta `tests/` pode ficar no GitHub; `.vercelignore` exclui testes, arquivos temporários, o ZIP antigo e arquivos `.env` da publicação. A chave deve ser configurada no painel da Vercel.
+
 ## Funcionalidades
 - Cabeçalho com logomarca e menu (Início, Sobre, Kits, Compatibilidade, Orçamento), com menu mobile
 - Seção de benefícios em **grid** e catálogo de kits em **cards com flex**
@@ -56,16 +65,19 @@ Confira a continuidade da conversa, o botão de orçamento, a busca de kits, o m
 ## Estrutura
 ```
 upgrade-facil/
-├── index.html
-├── css/style.css
-├── js/
-│   ├── kits.js       # dados dos kits
-│   ├── chatbot.js    # widget do Bit + chamada ao backend
-│   └── script.js     # menu, cards, formulário
-├── img/              # imagens do site
+├── public/           # frontend público
+│   ├── index.html
+│   ├── css/style.css
+│   ├── js/
+│   │   ├── kits.js   # dados dos kits, compartilhados com o backend
+│   │   ├── chatbot.js # widget do Bit + chamada ao backend
+│   │   └── script.js # menu, cards, formulário
+│   └── img/          # imagens do site
+├── app.js            # entrada do Express para a Vercel
 ├── server/           # servidor Express e prompt do Bit
 ├── tests/            # testes da rota do chat (API simulada)
 ├── .env.example      # exemplo de configuração, sem chave
+├── .vercelignore     # arquivos locais excluídos da publicação
 ├── package.json      # dependências e comandos npm
 └── README.md
 ```

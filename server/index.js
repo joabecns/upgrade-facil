@@ -5,11 +5,11 @@ require("dotenv").config({ path: path.join(__dirname, "../.env"), quiet: true })
 const bitPrompt = require("./bitPrompt");
 
 const app = express();
-const raiz = path.join(__dirname, "..");
+const raiz = path.join(__dirname, "../public");
 app.disable("x-powered-by");
 app.use(express.json({ limit: "64kb" }));
 
-// Publica apenas o HTML e as pastas do frontend, nunca a raiz inteira.
+// Frontend em public: servido pelo Express localmente e pelo CDN na Vercel.
 app.get("/", (req, res) => res.sendFile(path.join(raiz, "index.html")));
 app.get("/index.html", (req, res) => res.sendFile(path.join(raiz, "index.html")));
 for (const pasta of ["css", "js", "img"]) {
